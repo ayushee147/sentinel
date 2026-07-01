@@ -279,6 +279,7 @@ def main():
         gym_pct = st.slider("Gym / Exercise consistency (%)", 0, 100, 60, 5)
         resume_score = st.slider("Resume quality (self-assessed)", 0, 100, 65, 5)
         st.caption("💡 GEV internship + quantified projects ≈ 70–80")
+	st.caption("⚠️ Note: Resume score and project hrs sliders currently have known model calibration issues — focus on CGPA, LeetCode, Projects, DSA hrs, and Gym for accurate predictions.")
 
         analyze = st.button("🔍 Analyze & Build Roadmap", use_container_width=True, type="primary")
 
