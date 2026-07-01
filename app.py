@@ -60,8 +60,7 @@ st.markdown("""
 def load_sentinel():
     from model import load_model
     import os
-    if not os.path.exists("model/sentinel_trace.pkl"):
-        st.info("First launch — training model. This takes ~10 minutes. Please wait.")
+    if not os.path.exists("model/sentinel_trace.pkl"):        
         from generate_data import generate_dataset
         from model import build_and_train, save_model
         import os
