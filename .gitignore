@@ -1,0 +1,6 @@
+model/
+data/
+sentinel_env/
+__pycache__/
+*.pyc
+.pytensorrc
