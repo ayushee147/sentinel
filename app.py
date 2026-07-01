@@ -56,9 +56,21 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-@st.cache_resource(show_spinner="Loading Sentinel model…")
+@st.cache_resource(show_spinner="Loading Sentinel model… (first launch takes ~10 min)")
 def load_sentinel():
     from model import load_model
+    import os
+    if not os.path.exists("model/sentinel_trace.pkl"):
+        st.info("First launch — training model. This takes ~10 minutes. Please wait.")
+        from generate_data import generate_dataset
+        from model import build_and_train, save_model
+        import os
+        os.makedirs("model", exist_ok=True)
+        os.makedirs("data", exist_ok=True)
+        df = generate_dataset(1200, company="Microsoft")
+        model, trace = build_and_train(df, draws=500, tune=500, chains=1, cores=1)
+        save_model(model, trace)
+        return model, trace
     model, trace = load_model()
     return model, trace
 
